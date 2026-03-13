@@ -30,19 +30,19 @@
   align-items: flex-start; /* align top for scrolling */
   flex-direction: column;
 }
-  .page {
+ .page {
   display: none;
-  min-height: 100vh;
   width: 100%;
-  max-width: 950px; /* optional: keeps content from stretching too wide on large screens */
-  margin: 0 auto;   /* centers horizontally */
+  max-width: 950px;      /* max width */
+  margin: 20px auto;     /* vertical margin + auto horizontal centers it */
   padding: 20px;
   flex-direction: column;
   text-align: center;
   position: relative;
   z-index: 2;
-  overflow-y: auto; /* allow vertical scroll */
-  -webkit-overflow-scrolling: touch; /* smooth scroll on mobile */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box; /* ensure padding doesn't break width */
 }
 
     .active{
@@ -75,18 +75,19 @@
       max-width:900px;
     }
 
-    .card{
-      background: rgba(255,255,255,0.5);
-      backdrop-filter: blur(10px);
-      border:2px solid rgba(255,255,255,0.6);
-      box-shadow:0 10px 30px rgba(255,105,180,0.18);
-      border-radius:28px;
-      padding:30px 22px;
-      max-width:950px;
-      width:min(92vw, 950px);
-      position:relative;
-    }
-
+   .card {
+  background: rgba(255, 255, 255, 0.5);   /* semi-transparent background */
+  backdrop-filter: blur(10px);            /* nice blur effect */
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 30px rgba(255, 105, 180, 0.18);
+  border-radius: 28px;
+  padding: 30px 22px;
+  max-width: 950px;                        /* limit width on large screens */
+  width: 90%;                               /* take 90% of viewport width on smaller screens */
+  margin: 0 auto;                           /* centers card horizontally */
+  position: relative;
+  box-sizing: border-box;                   /* includes padding in width */
+}
     .btn{
       margin-top:25px;
       padding:14px 28px;
