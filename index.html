@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Just One More Thing, Baby… 🥺💖</title>
+
+  <!-- Cute Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #ffe4ec, #fff3e6, #ffd6eb);
+      overflow:hidden;
+      color:#5a2a44;
+      min-height:100vh;
+      position:relative;
+    }
+
+    .page{
+      display:none;
+      min-height:100vh;
+      width:100%;
+      padding:20px;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
+      position:relative;
+      z-index:2;
+    }
+
+    .active{
+      display:flex;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0; transform:translateY(20px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+
+    h1{
+      font-family:'Pacifico', cursive;
+      font-size:clamp(2rem, 6vw, 3.8rem);
+      color:#ff4f8b;
+      margin-bottom:18px;
+      text-shadow:0 2px 10px rgba(255,255,255,0.7);
+    }
+
+    h2{
+      font-size:clamp(1.2rem, 4vw, 2rem);
+      color:#7a3558;
+      margin-bottom:15px;
+    }
+
+    p{
+      font-size:clamp(1rem, 3.5vw, 1.25rem);
+      line-height:1.8;
+      max-width:900px;
+    }
+
+    .card{
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(10px);
+      border:2px solid rgba(255,255,255,0.6);
+      box-shadow:0 10px 30px rgba(255,105,180,0.18);
+      border-radius:28px;
+      padding:30px 22px;
+      max-width:950px;
+      width:min(92vw, 950px);
+      position:relative;
+    }
+
+    .btn{
+      margin-top:25px;
+      padding:14px 28px;
+      border:none;
+      border-radius:999px;
+      background:linear-gradient(135deg, #ff5fa2, #ff8fb8);
+      color:white;
+      font-size:1.05rem;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(255,95,162,0.35);
+      transition:0.25s ease;
+    }
+
+    .btn:hover{
+      transform:scale(1.06);
+    }
+
+    .btn-secondary{
+      background:linear-gradient(135deg, #8cc9ff, #6fb6ff);
+      box-shadow:0 8px 20px rgba(111,182,255,0.35);
+    }
+
+    .typing-box{
+      min-height:180px;
+      font-size:clamp(1.15rem, 4vw, 1.8rem);
+      font-weight:700;
+      color:#7a3558;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:10px;
+    }
+
+    .message-box{
+      max-width:900px;
+      margin:10px auto 0;
+      line-height:2;
+      font-size:clamp(1rem, 3.2vw, 1.18rem);
+      color:#6b2e4f;
+      background:rgba(255,255,255,0.65);
+      padding:24px;
+      border-radius:24px;
+      box-shadow:0 10px 24px rgba(0,0,0,0.08);
+      text-align:center;
+    }
+
+    .question-box{
+      margin-top:20px;
+    }
+
+    .btn-row{
+      display:flex;
+      gap:16px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:22px;
+      position:relative;
+      min-height:90px;
+    }
+
+    #noBtn{
+      position:relative;
+    }
+
+    .cat-sticker{
+      width:110px;
+      height:110px;
+      object-fit:cover;
+      border-radius:20px;
+      margin:10px;
+      box-shadow:0 8px 18px rgba(0,0,0,0.12);
+    }
+
+    .cats-wrap{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:12px 0 18px;
+    }
+
+    .final-glow{
+      font-size:clamp(1.2rem, 4vw, 2rem);
+      color:#ff4f8b;
+      font-weight:700;
+      margin-top:16px;
+      animation:pulse 1.6s infinite;
+    }
+
+    @keyframes pulse{
+      0%,100%{transform:scale(1);}
+      50%{transform:scale(1.05);}
+    }
+
+    /* Hearts background */
+    .heart{
+      position:fixed;
+      bottom:-30px;
+      color:rgba(255,105,180,0.55);
+      font-size:18px;
+      animation:floatUp linear forwards;
+      z-index:1;
+      pointer-events:none;
+    }
+
+    @keyframes floatUp{
+      0%{
+        transform:translateY(0) scale(1);
+        opacity:0.9;
+      }
+      100%{
+        transform:translateY(-120vh) scale(1.4);
+        opacity:0;
+      }
+    }
+
+    .burst-heart{
+      position:fixed;
+      font-size:22px;
+      pointer-events:none;
+      z-index:999;
+      animation:burst 1.4s ease-out forwards;
+    }
+
+    @keyframes burst{
+      0%{
+        transform:translate(0,0) scale(0.8);
+        opacity:1;
+      }
+      100%{
+        transform:translate(var(--x), var(--y)) scale(1.6);
+        opacity:0;
+      }
+    }
+
+    .tiny-note{
+      margin-top:12px;
+      font-size:0.95rem;
+      color:#8c4a6b;
+    }
+
+    @media (max-width:600px){
+      .card{
+        padding:22px 16px;
+      }
+      .cat-sticker{
+        width:85px;
+        height:85px;
+      }
+      .message-box{
+        padding:18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1 -->
+  <div class="page active" id="page1">
+    <div class="card">
+      <div class="cats-wrap">
+        <img class="cat-sticker" src="https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif" alt="cute cat">
+        <img class="cat-sticker" src="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif" alt="cute cat">
+      </div>
+      <h1>Just One More Thing, Baby… 🥺💖</h1>
+      <p>
+        Before you goooo 😚💞<br><br>
+        I know I already made you smile, blush, and maybe cry a little 😭💗<br>
+        But I’m still not done, kuttyyy 🐰🦆<br><br>
+        There’s <b>one last tiny surprise</b> waiting for my favorite human in the whole universe 🌍💖
+      </p>
+      <button class="btn" onclick="showPage('page2'); startTyping();">Click Me Baby 🐰💌</button>
+      <div class="tiny-note">Warning: high chance of blushing, smiling, and emotional damage 😌💘</div>
+    </div>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="page" id="page2">
+    <div class="card">
+      <h1>Read This Slowly… 💞</h1>
+      <div class="typing-box" id="typingText"></div>
+      <div class="tiny-note" id="typingHint">Typing from the heart... 💖</div>
+    </div>
+  </div>
+
+  <!-- PAGE 3 -->
+  <div class="page" id="page3">
+    <div class="card">
+      <h1>For My Baby 🐰🦆💖</h1>
+
+      <div class="cats-wrap">
+        <img class="cat-sticker" src="https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif" alt="cute cat">
+        <img class="cat-sticker" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="cute cat">
+      </div>
+
+      <div class="message-box">
+        See baby… 🥺💖 I know our love is a little bit complicated, messy, dramatic, and sometimes it honestly feels like one full-time serial with no ending 😭📺… but even after all that, one thing I want you to always remember is this — <b>I am with you, always and forever</b> 🫂❤️. I know we are facing so many things in real life, and I know it hurts you when your parents are not talking to you like before 😔, and I know there are days where your heart feels heavy and your smile hides so much pain… but baby, please don’t ever think you have to carry all of that alone anymore 💞. From now on, your pain is my pain, your tears are my tears, your happiness is my happiness, and your life is my favorite responsibility 🥹💗. We may be going through a lot, we may fight, we may overthink, we may act stubborn, and sometimes you may roast me, ignore me, or behave like one small angry duck 🦆😤… but still, even in all that chaos, I only end up loving you more and more every single day 😭❤️. I swear, our love may be hard, but it is also the most beautiful thing that ever happened to me 🌸✨. Just like this little journey, life is throwing us puzzles, struggles, levels, and impossible missions 🎮🧩, but no matter what comes, we will solve every real-life puzzle together, step by step, hand in hand 🤝💖. Even if the whole world stands against us, I will still stand beside you like your personal bodyguard, unpaid therapist, full-time lover, and part-time clown 🤺😂❤️. I will never leave you, baby, no matter what happens, no matter how hard life gets, no matter how many storms come — I will stay, I will fight, and I will choose you again and again and again 🌍💞. You are my peace in chaos, my comfort in pain, my happiness in sadness, my safe place, my home, and my biggest blessing 🏡💗. My sweet potato 🥔💛, my boiled egg 🥚🤍, my kutty vaaathu 🦆💛, my little baby 🐰💖, my overacting queen 👑😂, my drama piece 🎭💕, and still my most precious person in this whole universe 🌙✨. Sometimes you irritate me, sometimes you test my patience, sometimes you act like you are innocent while doing full crime 😏😂, but honestly, even your nonsense is cute to me and even your anger feels lovable because it is YOU 😭💘. And do you know something? After all this waiting, all these years, all these feelings, all these silent prayers, and everything my heart went through… now it is no longer you or me, baby… now it is <b>US</b> 🫶❤️, and trust me, this “US” is worth every second of my waiting, every tear, every prayer, and every heartbeat that chose you from the beginning 💍✨. So on your special day, I just want to say thank you for existing, thank you for being mine, thank you for making my life more beautiful, more meaningful, more chaotic, and definitely more cute 😭💖. Happy Birthday, my love 🎂🎉💞. No matter what happens in this life, I will love you till my very last breath, I will hold your hand through every storm, and one day we will look back at all these struggles and smile because we made it together 🫂🌸❤️. I love you so much, my baby… more than words, more than distance, more than fear, and more than this whole world can ever understand 💖🌍✨.
+      </div>
+
+      <button class="btn btn-secondary" onclick="showPage('page4')">One Last Question… 💍</button>
+    </div>
+  </div>
+
+  <!-- PAGE 4 -->
+  <div class="page" id="page4">
+    <div class="card">
+      <h1>One Last Question… 🥺💍</h1>
+      <h2>Will you stay with me forever, baby? 💖</h2>
+      <div class="question-box">
+        <div class="btn-row" id="buttonArea">
+          <button class="btn" id="yesBtn" onclick="sayYes()">Yes, always 💖</button>
+          <button class="btn btn-secondary" id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">No 😒</button>
+        </div>
+      </div>
+      <div class="tiny-note">Choose wisely madam 😌💘 (one option is fake 😏😂)</div>
+    </div>
+  </div>
+
+  <!-- PAGE 5 -->
+  <div class="page" id="page5">
+    <div class="card">
+      <div class="cats-wrap">
+        <img class="cat-sticker" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="cute cat">
+        <img class="cat-sticker" src="https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif" alt="cute cat">
+      </div>
+      <h1>That’s All I Wanted… 💖</h1>
+      <p class="final-glow">Happy Birthday, My Forever. 🫂🌸💞</p>
+      <p style="margin-top:18px;">
+        If I have you, I have everything, baby 🥺❤️<br><br>
+        Thank you for being the most beautiful part of my life.<br>
+        Now and forever… it’s <b>US</b> 🫶✨
+      </p>
+      <div class="tiny-note">Made with too much love, too much overthinking, and 100% pure feelings 😭💌</div>
+    </div>
+  </div>
+
+  <script>
+    // Show page
+    function showPage(id){
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    // Floating hearts background
+    function createHeart(){
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = ['💖','💕','💗','💘','💞'][Math.floor(Math.random()*5)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (14 + Math.random() * 24) + 'px';
+      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+    }
+
+    setInterval(createHeart, 350);
+
+    // Typing page
+    const lines = [
+      "This is not just your birthday… 🎂💖",
+      "This is the day my favorite person was born… 🌍🐰",
+      "And before this little journey ends… 🥺",
+      "There’s something my heart still wants to tell you… 💌"
+    ];
+
+    let lineIndex = 0;
+    let charIndex = 0;
+    let typingInterval;
+
+    function startTyping(){
+      const typingText = document.getElementById('typingText');
+      const typingHint = document.getElementById('typingHint');
+      typingText.innerHTML = "";
+      typingHint.innerHTML = "Typing from the heart... 💖";
+      lineIndex = 0;
+      charIndex = 0;
+
+      clearInterval(typingInterval);
+
+      typingInterval = setInterval(() => {
+        if(lineIndex < lines.length){
+          if(charIndex < lines[lineIndex].length){
+            typingText.innerHTML += lines[lineIndex].charAt(charIndex);
+            charIndex++;
+          } else {
+            typingText.innerHTML += "<br><br>";
+            lineIndex++;
+            charIndex = 0;
+          }
+        } else {
+          clearInterval(typingInterval);
+          typingHint.innerHTML = "Done typing… now come closer 😚💞";
+          setTimeout(() => {
+            showPage('page3');
+          }, 1800);
+        }
+      }, 60);
+    }
+
+    // No button moves
+    function moveNoButton(){
+      const noBtn = document.getElementById('noBtn');
+      const area = document.getElementById('buttonArea');
+
+      const maxX = area.clientWidth - noBtn.offsetWidth;
+      const maxY = 50;
+
+      const x = Math.random() * Math.max(20, maxX);
+      const y = Math.random() * maxY;
+
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+    }
+
+    // Yes button
+    function sayYes(){
+      burstHearts();
+      setTimeout(() => {
+        showPage('page5');
+      }, 900);
+    }
+
+    // Heart burst effect
+    function burstHearts(){
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      for(let i = 0; i < 24; i++){
+        const h = document.createElement('div');
+        h.classList.add('burst-heart');
+        h.innerHTML = ['💖','💘','💕','💞','💗'][Math.floor(Math.random()*5)];
+        h.style.left = centerX + 'px';
+        h.style.top = centerY + 'px';
+        h.style.setProperty('--x', (Math.random()*400 - 200) + 'px');
+        h.style.setProperty('--y', (Math.random()*400 - 200) + 'px');
+        document.body.appendChild(h);
+
+        setTimeout(() => h.remove(), 1500);
+      }
+    }
+  </script>
+</body>
+</html>
