@@ -15,15 +15,15 @@
       padding:0;
     }
 
-    body{
-      font-family:'Quicksand', sans-serif;
-      background: linear-gradient(135deg, #ffe4ec, #fff3e6, #ffd6eb);
-      overflow:hidden;
-      color:#5a2a44;
-      min-height:100vh;
-      position:relative;
-    }
-
+   body {
+  font-family:'Quicksand', sans-serif;
+  background: linear-gradient(135deg, #ffe4ec, #fff3e6, #ffd6eb);
+  color:#5a2a44;
+  min-height:100vh;
+  position:relative;
+  overflow-x: hidden; /* keep horizontal hidden */
+  overflow-y: auto;   /* allow vertical scrolling */
+}
    .page {
   display: none;
   min-height: 100vh;
