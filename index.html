@@ -15,28 +15,33 @@
       padding:0;
     }
 
-   body {
+  body {
   font-family:'Quicksand', sans-serif;
   background: linear-gradient(135deg, #ffe4ec, #fff3e6, #ffd6eb);
   color:#5a2a44;
   min-height:100vh;
   position:relative;
-  overflow-x: hidden; /* keep horizontal hidden */
-  overflow-y: auto;   /* allow vertical scrolling */
+  overflow-x: hidden; /* hide horizontal scroll */
+  overflow-y: auto;   /* allow vertical scroll */
+  
+  /* Add these to center content horizontally */
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: flex-start; /* align top for scrolling */
+  flex-direction: column;
 }
-   .page {
+  .page {
   display: none;
   min-height: 100vh;
   width: 100%;
+  max-width: 950px; /* optional: keeps content from stretching too wide on large screens */
+  margin: 0 auto;   /* centers horizontally */
   padding: 20px;
-  /* Remove vertical centering */
-  /* justify-content: center; */
-  /* align-items: center; */
   flex-direction: column;
   text-align: center;
   position: relative;
   z-index: 2;
-  overflow-y: auto; /* allow scrolling */
+  overflow-y: auto; /* allow vertical scroll */
   -webkit-overflow-scrolling: touch; /* smooth scroll on mobile */
 }
 
